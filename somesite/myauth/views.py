@@ -6,6 +6,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, CreateView
 
+from myauth.models import UserProfile
+
 
 def log_out_user(request: HttpRequest):
     logout(request)
@@ -42,7 +44,7 @@ class UserRegisterView(CreateView):
         """
         # переопределяем родительский метод
         response = super().form_valid(form)
-
+        UserProfile.objects.create(user=self.object)
         # получаем введённые пользователем пароль и логин
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password1")

@@ -13,6 +13,7 @@
         <p>First name: {{ user.first_name }}</p>
         <p>Last name: {{ user.userlast_name }}</p>
         <p>User Email: {{ user.email }}</p>
+        <p>Bio: {{ user.userprofile.bio }}</p>
     {% else %}
         <h2>User is anonymous</h2>
     {% endif %} 
