@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group, Permission
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -25,7 +26,7 @@ class ShopView(View):
         return redirect(reverse("shopapp:base"))
 
 
-class ProductDetailViews(DetailView):
+class ProductDetailViews(LoginRequiredMixin, DetailView):
     """
     Класс реализует детали продуктов
     """

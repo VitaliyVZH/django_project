@@ -1,10 +1,11 @@
 from django.contrib.auth.views import LoginView
 from django.urls import path
 
-from myauth.views import MyLogoutView, AboutMeView, UserRegisterView
+from myauth.views import myauth_base, MyLogoutView, AboutMeView, UserRegisterView
 
 app_name = 'myauth'
 urlpatterns = [
+    path("", myauth_base, name="base"),
     path('login/', LoginView.as_view(
         template_name="myauth/login.html",
         redirect_authenticated_user=True,

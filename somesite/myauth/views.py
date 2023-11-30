@@ -1,7 +1,8 @@
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LogoutView
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, CreateView
@@ -9,9 +10,14 @@ from django.views.generic import TemplateView, CreateView
 from myauth.models import UserProfile
 
 
-def log_out_user(request: HttpRequest):
-    logout(request)
-    return redirect(reverse('myauth:login'))
+@login_required
+def myauth_base(request: HttpRequest) -> HttpResponse:
+    return render(request, "myauth/base.html")
+
+
+# def log_out_user(request: HttpRequest):
+#     logout(request)
+#     return redirect(reverse('myauth:login'))
 
 
 class MyLogoutView(LogoutView):
