@@ -7,9 +7,9 @@ from .admin_mixins import ExportAsCSVMixin
 
 
 class OrdersInProductsInline(admin.TabularInline):
-    """
-    Класс открывает доступ к каботе с каждым связанным продуктом в заказе
-    """
+    # """
+    # Класс открывает доступ к работе с каждым связанным продуктом в заказе
+    # """
     model = Product.orders.through
 
 

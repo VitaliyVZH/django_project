@@ -67,7 +67,7 @@ class ProductCreateView(CreateView):
     Класс реализует создание нового продукта
     """
     template_name = "shopapp/product_create.html"
-    fields = 'name', 'description', 'archived'
+    fields = 'name', 'price', 'description',
     model = Product
     success_url = reverse_lazy("shopapp:products")
 
