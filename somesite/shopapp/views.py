@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import Group, Permission
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -43,10 +43,11 @@ class ProductDetailViews(LoginRequiredMixin, DetailView):
     #     return render(request, "shopapp/product_details.html", context=context)
 
 
-class ProductsListView(ListView):
+class ProductsListView(PermissionRequiredMixin, ListView):
     """
     Класс реализует список имеющихся продуктов
     """
+    permission_required = "shopapp.view_product",
     template_name = "shopapp/products.html"
     model = Product
     context_object_name = 'products'

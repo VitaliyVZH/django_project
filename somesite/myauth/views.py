@@ -1,5 +1,5 @@
 from django.contrib.auth import logout, authenticate, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LogoutView
 from django.http import HttpRequest, HttpResponse
@@ -11,6 +11,7 @@ from myauth.models import UserProfile
 
 
 @login_required
+@permission_required("myauth.view_userprofile")
 def myauth_base(request: HttpRequest) -> HttpResponse:
     return render(request, "myauth/base.html")
 
